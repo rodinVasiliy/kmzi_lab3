@@ -28,7 +28,7 @@ public class LehmannTest {
         List<BigInteger> listOfT = new LinkedList<>();
         BigInteger p = n.subtract(ONE).divide(TWO);
         BigInteger MINUS_ONE = n.subtract(ONE);
-        System.out.println("minus one = " + MINUS_ONE);
+        // System.out.println("minus one = " + MINUS_ONE);
 
         for (int i = 0; i < k; ++i) {
             BigInteger a = prevRandomBigInteger(n);
@@ -37,7 +37,7 @@ public class LehmannTest {
             listOfT.add(t);
         }
         for (BigInteger bigInteger : listOfT) {
-            System.out.println(bigInteger);
+            // System.out.println(bigInteger);
             if (!(bigInteger.equals(ONE) || bigInteger.equals(MINUS_ONE))) {
                 return false;
             }
@@ -48,10 +48,19 @@ public class LehmannTest {
 
     public static void main(String[] args) {
         BigInteger bigInteger = new BigInteger(
-                "374548630572308673462356437548674367548658753502312438573465293752368236723065128563409712342363632787696790678457784659786756574685867452523967349732937236349923852936523906743076349673296523957237693476293652370582403673703846512");
+                "37454863057230867346235643754867436754865875350231243857346529375236823672306512856340971234236363278769679067845778465978675657468586745252396734973293723634992385293652390674307634967329652395723769347629365237058240367370384651");
         BigInteger prime = bigInteger.nextProbablePrime();
-        boolean result = run(prime, 10);
-        System.out.println("result is " + result);
+        int k = 10;
+        boolean result = run(prime, k);
+        String resultString;
+        if(!result){
+            resultString = "this number is composite";
+        }
+        else{
+            double probability = 1/(Math.pow(2, k));
+            resultString = "this is a prime number with a probability of error " + probability;
+        }
+        System.out.println(resultString);
     }
 
 }
